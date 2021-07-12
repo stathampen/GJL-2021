@@ -4,20 +4,45 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public bool hasAmmo = false;
 
     public Transform debugHitTransform;
+
+    public State state;
+
+    public float pullbackSpeed = 4f;
+
+
+    private Transform latchedAmmo;
+
+
+    public enum State {
+        Idle,   //nothing special
+        PullBack,   //the player is pulling back ammo
+        Loaded  //the player has ammo
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        state = State.Idle;
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleHookShotStart();
+        switch (state)
+        {
+            
+            default:
+            case State.Idle:
+                HandleHookShotStart();
+                break;
+
+            case State.PullBack:
+                HandleHookShotPullBack();
+            break;
+
+        }
     }
 
     private void HandleHookShotStart()
@@ -32,8 +57,22 @@ public class PlayerShoot : MonoBehaviour
             {
                 //now do this
                 debugHitTransform.position = hit.point;
+                
+                //store the position of the latched object
+                latchedAmmo = hit.transform;
+
+                state = State.PullBack;
             }
         }
+    }
+
+    private void HandleHookShotPullBack()
+    {
+        Vector3 hookShotDirection = (latchedAmmo.position - transform.position).normalized;
+        
+        //start to pull back the ammo to the player
+
+        latchedAmmo.position = Vector3.MoveTowards(latchedAmmo.position, transform.position, pullbackSpeed * Time.deltaTime);
     }
 
 }
