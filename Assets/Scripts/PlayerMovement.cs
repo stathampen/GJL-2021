@@ -30,17 +30,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float h = joystick ? Input.GetAxis("Horizontal") : Input.GetAxis("Mouse X");
-        float v = joystick ? Input.GetAxis("Vertical") : Input.GetAxis("Mouse Y");
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
         LocalMove(h, v, shipSpeed);
         RotationLook(h, v, rotationSpeed);
         HorizontalLean(playerModel, h, 80, .1f);
 
-        if (Input.GetButtonDown("Action"))
+        if (Input.GetButtonDown("Fire3"))
             Boost(true);
 
-        if (Input.GetButtonUp("Action"))
+        if (Input.GetButtonUp("Fire3"))
             Boost(false);
 
     }
