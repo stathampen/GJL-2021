@@ -17,7 +17,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool joystick = true;
 
+    [Header("Action Bools")]
     public bool isBoosting = false;
+    public bool isBraking = false;
 
     public CinemachineDollyCart dollyCart;
 
@@ -37,11 +39,20 @@ public class PlayerMovement : MonoBehaviour
         RotationLook(h, v, rotationSpeed);
         HorizontalLean(playerModel, h, 80, .1f);
 
+        //BOOST FOR SPEEEEEEEEEEEEED
         if (Input.GetButtonDown("Fire3"))
             Boost(true);
 
         if (Input.GetButtonUp("Fire3"))
             Boost(false);
+
+
+        //Gotta take is slow my due
+        if (Input.GetButtonDown("Jump"))
+            Brake(true);
+
+        if (Input.GetButtonUp("Jump"))
+            Brake(false);
 
     }
 
@@ -77,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Boost(bool state)
     {
+        isBoosting = state;
+
         //need to tell camera to look fancy at this point?
         if (state)
         {
@@ -90,6 +103,27 @@ public class PlayerMovement : MonoBehaviour
 
         //if state is true times forward speed by 2, otherwise do not
         float speed = state ? forwardSpeed * 2 : forwardSpeed;
+
+        DOVirtual.Float(dollyCart.m_Speed, speed, .15f, SetSpeed);
+    }
+
+    void Brake(bool state)
+    {
+        isBraking = state;
+
+        //need to tell camera to look fancy at this point?
+        if (state)
+        {
+            //whilst braking do this
+            //put some fancy trails here
+        }
+        else
+        {
+            //do this instead
+        }
+
+        //if state is true times forward speed by 2, otherwise do not
+        float speed = state ? forwardSpeed / 2 : forwardSpeed;
 
         DOVirtual.Float(dollyCart.m_Speed, speed, .15f, SetSpeed);
     }
