@@ -11,7 +11,7 @@ public class TurretBehaviour : MonoBehaviour
     [Header("Attributes")]
     public float range = 15f;
     public float fireRate = 1f; //seconds
-    private float fireCountDown = 0f;
+    private float fireCountDown = 1f;
     public float rotationSpeed = 10f;
     public float shootForce;
 
@@ -35,6 +35,7 @@ public class TurretBehaviour : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, target.transform.position);
         if (distanceToPlayer < range)
         {
+
             
             //look at the player when they're close enough
             Vector3 direction = target.position - transform.position;
@@ -48,7 +49,14 @@ public class TurretBehaviour : MonoBehaviour
             if(fireCountDown <= 0f)
             {
                 //root tooty point and shooty!
-                Shoot();
+
+                //We can shoot the player!
+                if(Physics.Raycast(transform.position, direction, range, LayerMask.GetMask("Player")))
+                {
+                    //root tooty point and shooty!
+                    Shoot();
+                }
+
                 fireCountDown = 1f / fireRate;
             }
 
