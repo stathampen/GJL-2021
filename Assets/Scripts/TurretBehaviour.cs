@@ -13,6 +13,7 @@ public class TurretBehaviour : MonoBehaviour
     public float fireRate = 1f; //seconds
     private float fireCountDown = 0f;
     public float rotationSpeed = 10f;
+    public float shootForce;
 
     [Header("Setup Fields")]
     public string playerTag = "Player";
@@ -63,6 +64,8 @@ public class TurretBehaviour : MonoBehaviour
             LazerSpawn.position,
             LazerSpawn.rotation
         );
+
+        newBullet.GetComponent<Rigidbody>().AddForce(LazerSpawn.forward * shootForce);
     }
 
     private void OnCollisionEnter(Collision other) 

@@ -20,6 +20,7 @@ public class PlayerShoot : MonoBehaviour
 
     private Transform latchedAmmo;
     private int ammoLayer;
+    private int enemyLayer;
 
     public enum State {
         Idle,   //nothing special
@@ -32,6 +33,7 @@ public class PlayerShoot : MonoBehaviour
     {
         state = State.Idle;
         ammoLayer = LayerMask.GetMask("Ammo");
+        enemyLayer = LayerMask.GetMask("Enemy");
     }
 
     // Update is called once per frame
@@ -112,23 +114,56 @@ public class PlayerShoot : MonoBehaviour
 
     private void HandleShoot()
     {
+
+        Transform target;
+
         if(Input.GetButtonDown("Fire1"))
         {
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            //shoot the rubble!!
-            GameObject newBullet = (GameObject)Instantiate(
-                BulletPrefab,
-                BulletOrigin.position,
-                Quaternion.Euler(ray.direction)
-            );
+            if(Physics.Raycast(ray, out hit, 200f, enemyLayer))
+            {
+                //now do this
+                debugHitTransform.position = hit.point;
+                
+                //store the position of the enemy
+                target = hit.transform;
 
-            newBullet.GetComponent<Rigidbody>().AddForce(ray.direction * shootForce);
+
+                Vector3 direction = target.position - transform.position;
+                BulletOrigin.rotation = Quaternion.LookRotation(direction);
+                
+
+                //shoot the rubble!!
+                GameObject newBullet = (GameObject)Instantiate(
+                    BulletPrefab,
+                    BulletOrigin.position,
+                    BulletOrigin.rotation
+                );
+
+                newBullet.GetComponent<Rigidbody>().AddForce(BulletOrigin.forward * shootForce);
+            }
+            else
+            {
+                //even if they dont properly aim still fire off the rubble
+                GameObject newBullet = (GameObject)Instantiate(
+                    BulletPrefab,
+                    BulletOrigin.position,
+                    Quaternion.Euler(ray.direction)
+                );
+
+                newBullet.GetComponent<Rigidbody>().AddForce(ray.direction * shootForce);
+            }
 
             state = State.Idle;
         }
 
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawLine(Camera.main.transform.position, Input.mousePosition);
     }
 
 }
