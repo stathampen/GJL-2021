@@ -6,11 +6,21 @@ public class TurretBehaviour : MonoBehaviour
 {
 
     private Transform target;
+
+
+    [Header("Attributes")]
     public float range = 15f;
+    public float fireRate = 1f; //seconds
+    private float fireCountDown = 0f;
     public float rotationSpeed = 10f;
+
+    [Header("Setup Fields")]
     public string playerTag = "Player";
 
     public Transform partToRotate;
+
+    public GameObject LazerPrefab;
+    public Transform LazerSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +44,25 @@ public class TurretBehaviour : MonoBehaviour
             partToRotate.rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * rotationSpeed) ;
 
             //We can shoot the player!
+            if(fireCountDown <= 0f)
+            {
+                //root tooty point and shooty!
+                Shoot();
+                fireCountDown = 1f / fireRate;
+            }
 
+            fireCountDown -= Time.deltaTime;
 
         }
+    }
+
+    void Shoot()
+    {
+        GameObject newBullet = (GameObject)Instantiate(
+            LazerPrefab,
+            LazerSpawn.position,
+            LazerSpawn.rotation
+        );
     }
 
     private void OnCollisionEnter(Collision other) 
