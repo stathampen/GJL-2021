@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform aimTarget;
 
     public bool joystick = true;
+    public float currentLevel = 1;
 
     [Header("Action Bools")]
     public bool isBoosting = false;
@@ -59,7 +60,23 @@ public class PlayerMovement : MonoBehaviour
     void LocalMove(float x, float y, float speed)
     {
         //just move th eship in its local space as movement forward will be handled elswhere
-        transform.localPosition += new Vector3(x, y, 0) * speed * Time.deltaTime;
+
+        switch (currentLevel)
+        {
+            case 3:
+                transform.localPosition += new Vector3(x, y, 0) * speed * Time.deltaTime;
+            break;
+
+            case 2:
+                transform.localPosition += new Vector3(0, y, -x) * speed * Time.deltaTime;
+            break;
+
+            default:
+            case 1:
+                transform.localPosition += new Vector3(-x, y, 0) * speed * Time.deltaTime;
+            break;
+        }
+
         ClampPosition();
 
     }

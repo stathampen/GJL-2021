@@ -12,6 +12,7 @@ public class CameraBrain : MonoBehaviour
     public float rotationTime = 10f;
 
     public GameObject cameraHolderParent;
+    public PlayerMovement playerMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class CameraBrain : MonoBehaviour
     public void setLevelCamera(int level)
     {
         Debug.Log("Set camera: " + level);
+        playerMovement.currentLevel = level;
 
         switch (level)
         {

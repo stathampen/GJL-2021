@@ -266,6 +266,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 954a2f982d9376b4da090d427f5370df, type: 3}
+--- !u!114 &260571538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3480520932668387753, guid: e2846eca208964143903a6bcbd8ed2da, type: 3}
+  m_PrefabInstance: {fileID: 1073669032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17524766165c95046988b21ed68bd4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &599626002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -418,7 +429,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3480520932668387753, guid: e2846eca208964143903a6bcbd8ed2da, type: 3}
       propertyPath: forwardSpeed
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3480520933942773256, guid: e2846eca208964143903a6bcbd8ed2da, type: 3}
       propertyPath: m_Path
@@ -962,6 +973,7 @@ MonoBehaviour:
   level3Rotation: {x: 0, y: 0, z: 0}
   rotationTime: 0.5
   cameraHolderParent: {fileID: 1204583098}
+  playerMovement: {fileID: 260571538}
 --- !u!4 &1739354622
 Transform:
   m_ObjectHideFlags: 0
