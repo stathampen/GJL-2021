@@ -11,7 +11,7 @@ public class TurretBehaviour : MonoBehaviour
     [Header("Attributes")]
     public float range = 15f;
     public float fireRate = 1f; //seconds
-    private float fireCountDown = 1f;
+    public float fireCountDown = 1f;
     public float rotationSpeed = 10f;
     public float shootForce;
 
@@ -51,7 +51,7 @@ public class TurretBehaviour : MonoBehaviour
                 //root tooty point and shooty!
 
                 //We can shoot the player!
-                if(Physics.Raycast(transform.position, direction, range, LayerMask.GetMask("Player")))
+                if(Physics.Raycast(transform.position, direction, range * 2, LayerMask.GetMask("Player")))
                 {
                     //root tooty point and shooty!
                     Shoot();

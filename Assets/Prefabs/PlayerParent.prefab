@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1557089017}
   - component: {fileID: 1557089016}
   - component: {fileID: 1557089015}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -52,9 +52,10 @@ MonoBehaviour:
   playerModel: {fileID: 3480520933859430145}
   shipSpeed: 18
   rotationSpeed: 10
-  forwardSpeed: 30
+  forwardSpeed: 60
   aimTarget: {fileID: 3480520934307228049}
   joystick: 1
+  currentLevel: 1
   isBoosting: 0
   isBraking: 0
   dollyCart: {fileID: 3480520933942773256}
@@ -131,7 +132,7 @@ GameObject:
   - component: {fileID: 3480520932724762100}
   - component: {fileID: 3480520932724762107}
   - component: {fileID: 3480520932724762106}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3480520932887987274}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +257,7 @@ GameObject:
   - component: {fileID: 3480520933138125974}
   - component: {fileID: 3480520933138125973}
   - component: {fileID: 3480520933138125975}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: AimingUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +343,7 @@ GameObject:
   - component: {fileID: 3480520933499290286}
   - component: {fileID: 3480520933499290281}
   - component: {fileID: 3480520933499290280}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +415,7 @@ GameObject:
   - component: {fileID: 3480520933859430145}
   - component: {fileID: 3480520933859430204}
   - component: {fileID: 3480520933859430147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3480520933936126886}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,14 +508,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3480520933936126885}
-  m_LocalRotation: {x: 0, y: 0.42261827, z: 0, w: 0.9063079}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8675617683105598798}
   m_Father: {fileID: 3480520933942773263}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 50, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &3480520933942773262
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,9 +526,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3480520933942773263}
   - component: {fileID: 3480520933942773256}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerParent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -578,7 +579,7 @@ GameObject:
   - component: {fileID: 3480520934264244416}
   - component: {fileID: 3480520934264244417}
   - component: {fileID: 3480520934264244418}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CM vcam1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +663,7 @@ GameObject:
   - component: {fileID: 3480520934307228049}
   - component: {fileID: 3480520934307228044}
   - component: {fileID: 3480520934307228051}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AimObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +744,7 @@ GameObject:
   - component: {fileID: 3480520934492395045}
   - component: {fileID: 3480520934492395047}
   - component: {fileID: 3480520934492395046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,7 +759,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3480520934492395044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.03, z: 0.806}
+  m_LocalPosition: {x: -0, y: 1.021, z: -0.063}
   m_LocalScale: {x: 0.11627, y: 0.11627, z: 0.11627}
   m_Children: []
   m_Father: {fileID: 3480520932668387752}
@@ -825,7 +826,7 @@ GameObject:
   - component: {fileID: 3480520934599298771}
   - component: {fileID: 3480520934599298770}
   - component: {fileID: 3480520934599298769}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +924,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8675617683105598798}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CamHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

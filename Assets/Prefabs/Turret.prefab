@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 4658438928010253324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 4827079547112368513}
   m_Father: {fileID: 0}
@@ -274,10 +274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca306f4c35582e4dafcbab398402865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 20
+  range: 200
   fireRate: 1
   rotationSpeed: 10
-  shootForce: 1000
+  shootForce: 7000
   playerTag: Player
   partToRotate: {fileID: 4827079547112368513}
   LazerPrefab: {fileID: 5048857836536148465, guid: 604062037e0a0da459dbea69c69bea64, type: 3}
@@ -306,7 +306,6 @@ GameObject:
   - component: {fileID: 3787176972994743522}
   - component: {fileID: 2897113462033724908}
   - component: {fileID: 6359876767005624015}
-  - component: {fileID: 3779578771090062185}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -377,16 +376,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3779578771090062185
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7849942406001024652}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
