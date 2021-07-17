@@ -19,6 +19,7 @@ public class TurretBehaviour : MonoBehaviour
     public string playerTag = "Player";
 
     public Transform partToRotate;
+    public Transform turretFocus;
 
     public GameObject LazerPrefab;
     public Transform LazerSpawn;
@@ -32,7 +33,18 @@ public class TurretBehaviour : MonoBehaviour
 
     private void Update() 
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, target.transform.position);
+        float distanceToPlayer;
+        if(turretFocus != null)
+        {
+            //look in range of the focus
+            distanceToPlayer = Vector3.Distance(turretFocus.position, target.transform.position);
+        }
+        else
+        {
+            //look around self
+            distanceToPlayer = Vector3.Distance(transform.position, target.transform.position);
+        }
+
         if (distanceToPlayer < range)
         {
 
@@ -51,11 +63,30 @@ public class TurretBehaviour : MonoBehaviour
                 //root tooty point and shooty!
 
                 //We can shoot the player!
-                if(Physics.Raycast(transform.position, direction, range * 2, LayerMask.GetMask("Player")))
+
+                if(turretFocus != null)
                 {
-                    //root tooty point and shooty!
+
                     Shoot();
+
+                //look in range of the focus
+                //     if(Physics.Raycast(turretFocus.position, direction, range * 2, LayerMask.GetMask("Player")))
+                //     {
+                //         //root tooty point and shooty
+                //         Debug.Log("in range");
+                //         Shoot();
+                //     }
+                // }
+                // else
+                // {
+                //     //look around self
+                //     if(Physics.Raycast(transform.position, direction, range * 2, LayerMask.GetMask("Player")))
+                //     {
+                //         //root tooty point and shooty!
+                //         Shoot();
+                //     }
                 }
+
 
                 fireCountDown = 1f / fireRate;
             }
@@ -84,7 +115,18 @@ public class TurretBehaviour : MonoBehaviour
     private void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+
+        if(turretFocus != null)
+        {
+            //look in range of the focus
+            Gizmos.DrawWireSphere(turretFocus.position, range);
+        }
+        else
+        {
+            //look around self
+            Gizmos.DrawWireSphere(transform.position, range);
+        }
+       
     }
 
 }

@@ -38,7 +38,15 @@ public class PlayerMovement : MonoBehaviour
 
         LocalMove(h, v, shipSpeed);
         RotationLook(h, v, rotationSpeed);
-        HorizontalLean(playerModel, h, 80, .1f);
+
+        if(currentLevel == 2)
+        {
+            HorizontalLean(playerModel, v, 30, .1f);
+        }
+        else
+        {
+            HorizontalLean(playerModel, h, 60, .1f);
+        }
 
         //BOOST FOR SPEEEEEEEEEEEEED
         if (Input.GetButtonDown("Fire3"))
@@ -100,7 +108,25 @@ public class PlayerMovement : MonoBehaviour
     void HorizontalLean(Transform target, float axis, float leanLimit, float lerpTime)
     {
         Vector3 targetEulerAngels = target.localEulerAngles;
-        target.localEulerAngles = new Vector3(targetEulerAngels.x, targetEulerAngels.y, Mathf.LerpAngle(targetEulerAngels.z, -axis * leanLimit, lerpTime));
+
+        switch (currentLevel)
+        {
+            case 3:
+                target.localEulerAngles = new Vector3(0, 0, Mathf.LerpAngle(targetEulerAngels.z, -axis * leanLimit, lerpTime));
+            break;
+
+            case 2:
+                target.localEulerAngles = new Vector3(Mathf.LerpAngle(targetEulerAngels.x, -axis * leanLimit, lerpTime), 0, 0);
+
+            break;
+
+            default:
+            case 1:
+                target.localEulerAngles = new Vector3(0, 0, Mathf.LerpAngle(targetEulerAngels.z, axis * leanLimit, lerpTime));
+
+            break;
+        }
+
     }
 
     void Boost(bool state)

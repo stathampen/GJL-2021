@@ -11,6 +11,8 @@ public class PlayerShoot : MonoBehaviour
 
     public float pullbackSpeedMultiplier = 4f;
 
+    public float grappleRange = 200f;
+
     [Space]
 
     [Header("Bullet Shooty Variables")]
@@ -65,7 +67,7 @@ public class PlayerShoot : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if(Physics.Raycast(ray, out hit, 100f, ammoLayer))
+            if(Physics.Raycast(ray, out hit, grappleRange, ammoLayer))
             {
                 //now do this
                 debugHitTransform.position = hit.point;

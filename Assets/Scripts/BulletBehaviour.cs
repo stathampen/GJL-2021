@@ -15,12 +15,15 @@ public class BulletBehaviour : MonoBehaviour
         StartCoroutine("DestroySelfTimer", selfDestructTimer);
     }
 
-
     private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Enemy")
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
+        }
+        else if(other.gameObject.tag == "Player")
+        {
+            Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
         }
         // else
         // {
