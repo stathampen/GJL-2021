@@ -12,6 +12,8 @@ public class PlayerShoot : MonoBehaviour
     public float pullbackSpeedMultiplier = 4f;
 
     public float grappleRange = 200f;
+    public PlayerAduioController AduioController;
+
 
     [Space]
 
@@ -76,6 +78,8 @@ public class PlayerShoot : MonoBehaviour
                 latchedAmmo = hit.transform;
 
                 state = State.PullBack;
+
+                AduioController.PlayerGrappleSFX();
             }
         }
     }

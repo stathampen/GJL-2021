@@ -7,16 +7,7 @@ public class PlayerBehavour : MonoBehaviour
     // Start is called before the first frame update
     public int shipHealth = 10;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public PlayerAduioController AduioController;
 
     private void OnCollisionEnter(Collision other) {
 
@@ -29,7 +20,12 @@ public class PlayerBehavour : MonoBehaviour
                 Destroy(other.gameObject);
             break;
 
+            case "PlayerShot":
+                //do nothing
+            break;
+
             default:
+                AduioController.PlayerHitSFX();
                 RemoveHealth(1);
             break;
         }

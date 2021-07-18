@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ammo
   - Enemy
+  - PlayerShot
   layers:
   - Default
   - TransparentFX
