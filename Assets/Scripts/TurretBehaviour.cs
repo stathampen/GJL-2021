@@ -64,10 +64,13 @@ public class TurretBehaviour : MonoBehaviour
 
                 //We can shoot the player!
 
-                if(turretFocus != null)
-                {
 
-                    Shoot();
+                Shoot();
+
+                // if(turretFocus != null)
+                // {
+
+                //     Shoot();
 
                 //look in range of the focus
                 //     if(Physics.Raycast(turretFocus.position, direction, range * 2, LayerMask.GetMask("Player")))
@@ -85,7 +88,7 @@ public class TurretBehaviour : MonoBehaviour
                 //         //root tooty point and shooty!
                 //         Shoot();
                 //     }
-                }
+                // }
 
 
                 fireCountDown = 1f / fireRate;
