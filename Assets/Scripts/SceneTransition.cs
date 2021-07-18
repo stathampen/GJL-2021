@@ -12,6 +12,7 @@ public class SceneTransition : MonoBehaviour
 
     public void LoadGameScene()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 

@@ -9,6 +9,8 @@ public class PlayerBehavour : MonoBehaviour
 
     public PlayerAduioController AduioController;
 
+    public EndGameController endGameController;
+
     private void OnCollisionEnter(Collision other) {
 
         switch (other.gameObject.tag)
@@ -40,10 +42,23 @@ public class PlayerBehavour : MonoBehaviour
 
     private void RemoveHealth(int amount)
     {
-        shipHealth -= amount;
+        if(shipHealth > 0)
+        {
+            shipHealth -= amount;
+        }
+        else
+        {
+
+        }
+
     }
     private void AddHealth(int amount)
     {
         shipHealth += amount;
+    }
+
+    private void PlayerLose()
+    {
+        endGameController.ShowEndGameUI(false);
     }
 }
