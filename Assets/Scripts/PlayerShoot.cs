@@ -14,6 +14,7 @@ public class PlayerShoot : MonoBehaviour
     public float grappleRange = 200f;
     public PlayerAduioController AduioController;
 
+    public GameObject loadedAmmoVFX;
 
     [Space]
 
@@ -51,11 +52,13 @@ public class PlayerShoot : MonoBehaviour
                 break;
 
             case State.Loaded:
+                loadedAmmoVFX.SetActive(true);
                 HandleShoot();
             break;
 
             default:
             case State.Idle:
+                loadedAmmoVFX.SetActive(false);
                 HandleHookShotStart();
                 break;
         }

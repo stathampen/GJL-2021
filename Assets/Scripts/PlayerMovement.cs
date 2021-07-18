@@ -108,6 +108,7 @@ public class PlayerMovement : MonoBehaviour
     void HorizontalLean(Transform target, float axis, float leanLimit, float lerpTime)
     {
         Vector3 targetEulerAngels = target.localEulerAngles;
+        target.rotation = Quaternion.Euler(new Vector3(0,0,0));
 
         switch (currentLevel)
         {

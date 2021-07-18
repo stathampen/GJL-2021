@@ -6,7 +6,28 @@ public class PlayerAduioController : MonoBehaviour
 {
 
     public AudioClip[] SFXClips;
+    public AudioClip[] BGMClips;
     public AudioSource SFXAudioClip;
+    public AudioSource BGMAudioSource;
+
+    private void Start() 
+    {
+        //play the default music when the scene loads
+        BGMAudioSource.clip = BGMClips[0];
+        BGMAudioSource.Play();
+    }
+
+    public void PlayerWinMusic()
+    {
+        BGMAudioSource.clip = BGMClips[1];
+        BGMAudioSource.Play();
+    }
+
+    public void PlayerLoseMusic()
+    {
+        BGMAudioSource.clip = BGMClips[2];
+        BGMAudioSource.Play();
+    }
 
     public void PlayerGrappleSFX()
     {
