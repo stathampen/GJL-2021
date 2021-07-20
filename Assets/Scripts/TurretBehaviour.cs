@@ -101,18 +101,65 @@ public class TurretBehaviour : MonoBehaviour
 
     void Shoot()
     {
+        Debug.Log(LazerSpawn.position);
+
         GameObject newBullet = (GameObject)Instantiate(
             LazerPrefab,
             LazerSpawn.position,
             LazerSpawn.rotation
         );
 
-        newBullet.GetComponent<Rigidbody>().AddForce(LazerSpawn.forward * shootForce);
+        Vector3 bulletMoveVector = Vector3.Normalize(newBullet.transform.position - target.transform.position);
+        Vector3 playerMoveVector = target.GetComponent<PlayerMovement>().NextPosition();
+        Vector3 playerVelocity = playerMoveVector * target.GetComponent<PlayerMovement>().forwardSpeed * -1;
+
+        //current ship speed is 32
+
+        //need to get the movement vector of the player ship
+        Vector3 aimVector = FindInterceptVector(
+            LazerSpawn.position, 
+            newBullet.GetComponent<LazerBehaviour>().speed, 
+            target.transform.position, 
+            playerVelocity);
+
+        //tell the bullet where it needs to go
+        Debug.Log(aimVector);
+
+        newBullet.GetComponent<LazerBehaviour>().moveVector = aimVector;
+
+        // StartCoroutine(newBullet.GetComponent<LazerBehaviour>().Intercept(aimVector));
     }
 
     private void OnCollisionEnter(Collision other) 
     {
         Destroy(gameObject);
+    }
+
+    private Vector3 FindInterceptVector(Vector3 bulletOrigin, float bulletSpeed, Vector3 targetPosition, Vector3 targetVelocity)
+    {
+        //again figure out where the player is in relation to the turret
+        Vector3 directionToTarget = Vector3.Normalize(targetPosition - bulletOrigin);
+
+        Vector3 targetVelocityOrth = Vector3.Dot(targetVelocity, directionToTarget) * directionToTarget;
+
+        Vector3 targetVelocityTang = targetVelocity - targetVelocityOrth;
+
+        Vector3 bulletVelocityTang = targetVelocityTang;
+
+        float bulletVelocitySpeed = bulletVelocityTang.magnitude;
+        if (bulletVelocitySpeed > bulletSpeed) 
+        {
+            //bullet is to sloo to intercept the player so need to speed up
+            return (targetVelocity.normalized * bulletSpeed).normalized * -1;
+        }
+        else
+        {
+            float bulletSpeedOrth = Mathf.Sqrt(bulletSpeed * bulletSpeed - bulletVelocitySpeed * bulletSpeed);
+
+            Vector3 bulletVelocityOrth = directionToTarget * bulletSpeedOrth;
+
+            return(bulletVelocityOrth + bulletVelocityTang).normalized * -1;
+        }
     }
 
     private void OnDrawGizmosSelected() 

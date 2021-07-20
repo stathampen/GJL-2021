@@ -182,4 +182,14 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireSphere(aimTarget.position, .5f);
         Gizmos.DrawSphere(aimTarget.position, .15f);
     }
+
+    public Vector3 NextPosition()
+    {
+
+        float futurePosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position + 5,    dollyCart.m_PositionUnits);
+        Vector3 furtureTransformPosition = dollyCart.m_Path.EvaluatePositionAtUnit(futurePosition, dollyCart.m_PositionUnits);  
+
+        return Vector3.Normalize(transform.position - furtureTransformPosition);
+
+    }
 }
