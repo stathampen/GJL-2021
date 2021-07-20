@@ -48,7 +48,7 @@ public class PlayerBehavour : MonoBehaviour
         }
         else
         {
-
+            PlayerLose();
         }
 
     }

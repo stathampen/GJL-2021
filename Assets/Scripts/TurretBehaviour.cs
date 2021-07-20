@@ -110,12 +110,11 @@ public class TurretBehaviour : MonoBehaviour
         );
 
         Vector3 bulletMoveVector = Vector3.Normalize(newBullet.transform.position - target.transform.position);
+        
+        //need to get the movement vector of the player ship
         Vector3 playerMoveVector = target.GetComponent<PlayerMovement>().NextPosition();
         Vector3 playerVelocity = playerMoveVector * target.GetComponent<PlayerMovement>().forwardSpeed * -1;
 
-        //current ship speed is 32
-
-        //need to get the movement vector of the player ship
         Vector3 aimVector = FindInterceptVector(
             LazerSpawn.position, 
             newBullet.GetComponent<LazerBehaviour>().speed, 

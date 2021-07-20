@@ -118,13 +118,11 @@ public class PlayerMovement : MonoBehaviour
 
             case 2:
                 target.localEulerAngles = new Vector3(Mathf.LerpAngle(targetEulerAngels.x, -axis * leanLimit, lerpTime), 0, 0);
-
             break;
 
             default:
             case 1:
                 target.localEulerAngles = new Vector3(0, 0, Mathf.LerpAngle(targetEulerAngels.z, axis * leanLimit, lerpTime));
-
             break;
         }
 
@@ -186,10 +184,12 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 NextPosition()
     {
 
-        float futurePosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position + 5,    dollyCart.m_PositionUnits);
+        float currentPosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position,    dollyCart.m_PositionUnits);
+        Vector3 currentTransformPosition = dollyCart.m_Path.EvaluatePositionAtUnit(currentPosition, dollyCart.m_PositionUnits);  
+
+        float futurePosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position + 3,    dollyCart.m_PositionUnits);
         Vector3 furtureTransformPosition = dollyCart.m_Path.EvaluatePositionAtUnit(futurePosition, dollyCart.m_PositionUnits);  
 
-        return Vector3.Normalize(transform.position - furtureTransformPosition);
-
+        return Vector3.Normalize(currentTransformPosition - furtureTransformPosition);
     }
 }
