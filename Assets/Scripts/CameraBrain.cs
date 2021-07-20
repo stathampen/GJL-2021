@@ -37,7 +37,7 @@ public class CameraBrain : MonoBehaviour
         {
             case 3:
                 cameraHolderParent.transform.localEulerAngles  =  new Vector3(level3Rotation.x, level3Rotation.y, level3Rotation.z);
-                playerDisplayObject.transform.localRotation = new Vector3(0, 0, 0);
+                playerDisplayObject.transform.localPosition = new Vector3(0, 0, 0);
             break;
 
             case 2:
