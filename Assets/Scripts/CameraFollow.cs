@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
         }
 
 
-        FollowTarget(target);
+        // FollowTarget(target);
     }
 
     private void LateUpdate() {

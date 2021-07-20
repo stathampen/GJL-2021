@@ -113,7 +113,9 @@ public class TurretBehaviour : MonoBehaviour
         
         //need to get the movement vector of the player ship
         Vector3 playerMoveVector = target.GetComponent<PlayerMovement>().NextPosition();
-        Vector3 playerVelocity = playerMoveVector * target.GetComponent<PlayerMovement>().forwardSpeed * -1;
+
+        //means if th eplayer is boosting turrets will start to compensate
+        Vector3 playerVelocity = playerMoveVector * target.GetComponent<PlayerMovement>().currentSpeed * -1;
 
         Vector3 aimVector = FindInterceptVector(
             LazerSpawn.position, 
@@ -122,8 +124,6 @@ public class TurretBehaviour : MonoBehaviour
             playerVelocity);
 
         //tell the bullet where it needs to go
-        Debug.Log(aimVector);
-
         newBullet.GetComponent<LazerBehaviour>().moveVector = aimVector;
 
         // StartCoroutine(newBullet.GetComponent<LazerBehaviour>().Intercept(aimVector));

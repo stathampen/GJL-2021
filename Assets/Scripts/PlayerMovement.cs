@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float shipSpeed = 18;
     public float rotationSpeed = 340;
     public float forwardSpeed = 6;
+    public float currentSpeed;
 
     public Transform aimTarget;
 
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         SetSpeed(forwardSpeed);
+        currentSpeed = forwardSpeed;
     }
 
     // Update is called once per frame
@@ -137,14 +139,17 @@ public class PlayerMovement : MonoBehaviour
         {
             //whilst boosting do this
             //put some fancy trails here
+
+            currentSpeed = forwardSpeed * 1.5f;
         }
         else
         {
             //do this instead
+            currentSpeed = forwardSpeed;
         }
 
         //if state is true times forward speed by 2, otherwise do not
-        float speed = state ? forwardSpeed * 2 : forwardSpeed;
+        float speed = state ? forwardSpeed * 1.5f : forwardSpeed;
 
         DOVirtual.Float(dollyCart.m_Speed, speed, .15f, SetSpeed);
     }
@@ -184,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 NextPosition()
     {
 
-        float currentPosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position,    dollyCart.m_PositionUnits);
+        float currentPosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position, dollyCart.m_PositionUnits);
         Vector3 currentTransformPosition = dollyCart.m_Path.EvaluatePositionAtUnit(currentPosition, dollyCart.m_PositionUnits);  
 
         float futurePosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position + 3,    dollyCart.m_PositionUnits);
