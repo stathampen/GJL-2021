@@ -7,17 +7,19 @@ public class SceneTransition : MonoBehaviour
 {
     public void ExitGame()
     {
-        ExitGame();
+        Application.Quit();
     }
 
     public void LoadGameScene()
     {
         Time.timeScale = 1;
+        Cursor.visible = false;
         SceneManager.LoadScene(1);
     }
 
     public void LoadMenuScene()
     {
+        Cursor.visible = true;
         SceneManager.LoadScene(0);
     }
 }

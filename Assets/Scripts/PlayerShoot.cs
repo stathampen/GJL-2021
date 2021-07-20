@@ -91,7 +91,7 @@ public class PlayerShoot : MonoBehaviour
     {
         //start to pull back the ammo to the player
 
-        float pullbackSpeedMin = 10f;
+        float pullbackSpeedMin = 30f;
         float pullbackSpeedMax = 40f;
 
         //have it faster the further away the ammo is and slows down when it gets close
