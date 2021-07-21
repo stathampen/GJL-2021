@@ -23,6 +23,7 @@ public class TurretBehaviour : MonoBehaviour
 
     public GameObject LazerPrefab;
     public Transform LazerSpawn;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -60,36 +61,9 @@ public class TurretBehaviour : MonoBehaviour
             //We can shoot the player!
             if(fireCountDown <= 0f)
             {
-                //root tooty point and shooty!
-
-                //We can shoot the player!
 
 
                 Shoot();
-
-                // if(turretFocus != null)
-                // {
-
-                //     Shoot();
-
-                //look in range of the focus
-                //     if(Physics.Raycast(turretFocus.position, direction, range * 2, LayerMask.GetMask("Player")))
-                //     {
-                //         //root tooty point and shooty
-                //         Debug.Log("in range");
-                //         Shoot();
-                //     }
-                // }
-                // else
-                // {
-                //     //look around self
-                //     if(Physics.Raycast(transform.position, direction, range * 2, LayerMask.GetMask("Player")))
-                //     {
-                //         //root tooty point and shooty!
-                //         Shoot();
-                //     }
-                // }
-
 
                 fireCountDown = 1f / fireRate;
             }
@@ -131,6 +105,7 @@ public class TurretBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
+        audioSource.Play();
         Destroy(gameObject);
     }
 

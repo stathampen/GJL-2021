@@ -81,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
                 transform.localPosition += new Vector3(0, y, -x) * speed * Time.deltaTime;
             break;
 
-            default:
             case 1:
                 transform.localPosition += new Vector3(-x, y, 0) * speed * Time.deltaTime;
             break;
@@ -122,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
                 target.localEulerAngles = new Vector3(Mathf.LerpAngle(targetEulerAngels.x, -axis * leanLimit, lerpTime), 0, 0);
             break;
 
-            default:
             case 1:
                 target.localEulerAngles = new Vector3(0, 0, Mathf.LerpAngle(targetEulerAngels.z, axis * leanLimit, lerpTime));
             break;
@@ -134,22 +132,10 @@ public class PlayerMovement : MonoBehaviour
     {
         isBoosting = state;
 
-        //need to tell camera to look fancy at this point?
-        if (state)
-        {
-            //whilst boosting do this
-            //put some fancy trails here
-
-            currentSpeed = forwardSpeed * 1.5f;
-        }
-        else
-        {
-            //do this instead
-            currentSpeed = forwardSpeed;
-        }
-
         //if state is true times forward speed by 2, otherwise do not
         float speed = state ? forwardSpeed * 1.5f : forwardSpeed;
+
+        currentSpeed = speed;
 
         DOVirtual.Float(dollyCart.m_Speed, speed, .15f, SetSpeed);
     }
@@ -192,9 +178,21 @@ public class PlayerMovement : MonoBehaviour
         float currentPosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position, dollyCart.m_PositionUnits);
         Vector3 currentTransformPosition = dollyCart.m_Path.EvaluatePositionAtUnit(currentPosition, dollyCart.m_PositionUnits);  
 
-        float futurePosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position + 3,    dollyCart.m_PositionUnits);
-        Vector3 furtureTransformPosition = dollyCart.m_Path.EvaluatePositionAtUnit(futurePosition, dollyCart.m_PositionUnits);  
+        if(currentLevel == 2)
+        {
+            float futurePosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position + .2f,    dollyCart.m_PositionUnits);
+            Vector3 furtureTransformPosition = dollyCart.m_Path.EvaluatePositionAtUnit(futurePosition, dollyCart.m_PositionUnits);  
 
-        return Vector3.Normalize(currentTransformPosition - furtureTransformPosition);
+            return Vector3.Normalize(currentTransformPosition - furtureTransformPosition);
+        }
+        else
+        {
+            float futurePosition = dollyCart.m_Path.StandardizeUnit(dollyCart.m_Position + .5f,    dollyCart.m_PositionUnits);
+            Vector3 furtureTransformPosition = dollyCart.m_Path.EvaluatePositionAtUnit(futurePosition, dollyCart.m_PositionUnits);  
+
+            return Vector3.Normalize(currentTransformPosition - furtureTransformPosition);
+        }
+
+
     }
 }
