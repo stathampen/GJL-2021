@@ -317,6 +317,7 @@ MonoBehaviour:
   turretFocus: {fileID: 0}
   LazerPrefab: {fileID: 5048857836536148465, guid: 604062037e0a0da459dbea69c69bea64, type: 3}
   LazerSpawn: {fileID: 6524188602916983059}
+  audioSource: {fileID: 8859804191165876075}
 --- !u!136 &2380985032030066339
 CapsuleCollider:
   m_ObjectHideFlags: 0

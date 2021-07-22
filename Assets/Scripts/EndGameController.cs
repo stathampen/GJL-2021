@@ -16,6 +16,7 @@ public class EndGameController : MonoBehaviour
     {
         //set the game object to enabled
         endGameUI.SetActive(true);
+        Cursor.visible = true;
 
         //stop the game time
         Time.timeScale = 0;
